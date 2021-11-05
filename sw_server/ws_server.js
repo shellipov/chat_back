@@ -15,7 +15,7 @@ export default function ws_server( app ) {
   app.ws("/", function (ws, res) {
     ws.on("message", (msg) => {
       const mess = JSON.parse(msg);
-      const { from, to, message } = mess;
+      const { from, to, message, date } = mess;
       const room = rooms.filter(
         (el) => el.IDList.includes(from) && el.IDList.includes(to)
       )[0];
@@ -23,12 +23,12 @@ export default function ws_server( app ) {
         case "message":
           if (room) {
             const index = rooms.indexOf(room);
-            rooms[index].messages.push({ id: from, message: message });
+            rooms[index].messages.push({ id: from, message: message, date });
             broadcastMessage(room);
           } else {
             rooms.push({
               IDList: [from, to],
-              messages: [{ id: from, message: message }],
+              messages: [{ id: from, message: message, date }],
             });
             broadcastMessage({ IDList: [from, to], messages: [] });
           }

@@ -11,8 +11,8 @@ export const rooms = [
   {
     IDList: ["01", "06"],
     messages: [
-      { id: "01", message: "helll0!" },
-      { id: "06", message: "helloooooo" },
+      { id: "01", message: "helll0!", time: "06.11.2021, 01:29:26" },
+      { id: "06", message: "helloooooo", time: "06.11.2021, 01:32:26" },
     ],
   },
 ];
